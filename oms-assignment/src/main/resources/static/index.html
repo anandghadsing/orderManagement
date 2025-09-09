@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OMS Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0; padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    p.info {
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+    }
+    .card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .card h3 {
+      margin-top: 0;
+      font-size: 18px;
+      color: #444;
+    }
+    input[type="file"] {
+      display: block;
+      margin-bottom: 10px;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 5px;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    #out {
+      background: #272822;
+      color: #f1f1f1;
+      padding: 10px;
+      border-radius: 5px;
+      white-space: pre-wrap;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📦 OMS – Bulk Upload</h1>
+    <p class="info">
+      Login with HTTP Basic: 
+      <b>admin/admin123</b> | 
+      <b>manager/manager123</b> | 
+      <b>operator/operator123</b>
+    </p>
+
+    <div class="card">
+      <h3>👥 Upload Customers (Admin)</h3>
+      <input type="file" id="customersCsv">
+      <button onclick="upload('/api/customers/upload','customersCsv')">Upload Customers</button>
+      <button onclick="downloadSample('/api/sample/customers')">Download Sample CSV</button>
+    </div>
+
+    <div class="card">
+      <h3>📦 Upload Products (Admin)</h3>
+      <input type="file" id="productsCsv">
+      <button onclick="upload('/api/products/upload','productsCsv')">Upload Products</button>
+      <button onclick="downloadSample('/api/sample/products')">Download Sample CSV</button>
+    </div>
+
+    <div class="card">
+      <h3>📝 Upload Orders (Admin/Operator)</h3>
+      <input type="file" id="ordersCsv">
+      <button onclick="upload('/api/orders/upload','ordersCsv')">Upload Orders</button>
+      <button onclick="downloadSample('/api/sample/orders')">Download Sample CSV</button>
+    </div>
+
+    <div class="card">
+      <h3>📋 List Orders</h3>
+      <button onclick="listOrders()">Get Orders</button>
+      <pre id="out"></pre>
+    </div>
+  </div>
+
+  <script>
+    function downloadSample(url) {
+      window.location.href = url;
+    }
+  </script>
+  <script src="/app.js"></script>
+</body>
+</html>

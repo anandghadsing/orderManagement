@@ -1,0 +1,3 @@
+customerEmail,productSku,quantity,status,orderDate
+john@example.com,SKU-001,2,PENDING,2025-08-20
+jane@example.com,SKU-002,1,CONFIRMED,2025-08-22
